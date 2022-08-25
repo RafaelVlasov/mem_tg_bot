@@ -4,6 +4,8 @@ import random
 
 bot = telebot.TeleBot('5552249208:AAH_mcOSV1gvhDtwt9BbpkQNZPLUbtuVZFo')  # присваиваем токен бота из ТГ
 
+#  считываем части текста из файлов в переменные для их будущей рандомной компоновки
+#  в текст гороскопа
 with open("first.txt", "r") as f1:
     first = f1.readlines()
 with open("second.txt", "r") as f2:
@@ -13,12 +15,15 @@ with open("second_add.txt", "r") as f2_add:
 with open("third.txt", "r") as f3:
     third = f3.readlines()
 
-@bot.message_handler(commands=['help'])   # обработчик для считывания команд пользователя
+
+# обработчик для считывания команд пользователя
+@bot.message_handler(commands=['help'])
 def helper(message):
     help_message = '<b>/mem_cats</b> - показывает рандомный мемчик с котиками\n' \
                            '<b>/who_are_you_today</b> - показывает какой ты сегодня пингвинчик\n' \
                            '<b>/horoscope</b> - максимально точно предсказывает будущее, но только на один денёк'
     bot.send_message(message.chat.id, help_message, parse_mode='html')
+
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -37,22 +42,25 @@ def start(message):
     bot.send_message(message.chat.id, send_mess, parse_mode='html', reply_markup=markup)
 
 
+#  отправляет пользователю рандомно выбранный мем
 @bot.message_handler(commands=['mem_cats'])
 def mem_cats(message):
     mem = open('cat_mems/' + str(random.randint(1, 42)) + '.jpeg', 'rb')
     bot.send_photo(message.chat.id, mem)
 
 
+#  отправляет пользователю рандомно выбранный статус-картинку
 @bot.message_handler(commands=['who_are_you_today'])
 def who_are_you_today(message):
     status_png = open('who_you/' + str(random.randint(1, 23)) + '.png', 'rb')
     bot.send_photo(message.chat.id, status_png)
 
 
+#  отправляем пользователю гороскоп
 @bot.message_handler(commands=['horoscope'])
 def horoscope(message):
     # Пишем приветствие
-    send_mess =  f"<b>{message.from_user.first_name}</b>! \nCейчас я расскажу тебе гороскоп на сегодня. Не унывай," \
+    send_mess = f"<b>{message.from_user.first_name}</b>! \nCейчас я расскажу тебе гороскоп на сегодня. Не унывай," \
                         ' давай посмотрим, может там что-то хорошее!'
     bot.send_message(message.chat.id, send_mess, parse_mode='html')
     # Готовим кнопки
