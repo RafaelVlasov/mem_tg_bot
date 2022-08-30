@@ -4,6 +4,10 @@ import random
 import requests
 from bs4 import BeautifulSoup
 
+<<<<<<< HEAD
+=======
+bot = telebot.TeleBot('')  # присваиваем токен бота из ТГ
+>>>>>>> 8b0c17eac895ec50ea128e94f6de4882fa614e1e
 
 bot = telebot.TeleBot('5552249208:AAH_mcOSV1gvhDtwt9BbpkQNZPLUbtuVZFo')  # присваиваем токен бота из ТГ
 
