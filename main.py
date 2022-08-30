@@ -4,7 +4,7 @@ import random
 import requests
 from bs4 import BeautifulSoup
 
-bot = telebot.TeleBot('')  # присваиваем токен бота из ТГ
+bot = telebot.TeleBot('5552249208:AAH_mcOSV1gvhDtwt9BbpkQNZPLUbtuVZFo')  # присваиваем токен бота из ТГ
 
 # обработчик для считывания команд пользователя
 @bot.message_handler(commands=['help'])
